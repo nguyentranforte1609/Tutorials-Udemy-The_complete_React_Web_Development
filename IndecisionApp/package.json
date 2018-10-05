@@ -17,6 +17,7 @@
     "debug": "^4.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-modal": "^3.6.1",
     "webpack": "^4.20.2",
     "webpack-dev-server": "^3.1.9"
   },
