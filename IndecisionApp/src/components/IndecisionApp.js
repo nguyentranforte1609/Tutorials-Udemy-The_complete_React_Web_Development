@@ -10,26 +10,25 @@ export default class IndecisionApp extends React.Component {
         options: [],
         selectedOption: undefined
     }
-    
-    componentDidMount(){
+
+    componentDidMount() {
         const json = localStorage.getItem('option')
         const options = JSON.parse(json)
         if (options) {
-            this.setState(()=> ({
+            this.setState(() => ({
                 options: options
             }))
         }
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.options.length !== this.state.options.length)
-        {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
             localStorage.setItem('option', json);
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log('componentWillUnmount')
     }
 
@@ -40,7 +39,7 @@ export default class IndecisionApp extends React.Component {
     }
 
     handleSingleDeleteOption = (option) => {
-        console.log(typeof(option))
+        console.log(typeof (option))
         this.setState((prev) => ({
             options: prev.options.filter((item) => item !== option)
         }))
@@ -50,7 +49,7 @@ export default class IndecisionApp extends React.Component {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
         this.setState(() => ({
-            selectedOption : option
+            selectedOption: option
         }));
     }
 
@@ -68,7 +67,7 @@ export default class IndecisionApp extends React.Component {
 
     handleClearSelectedOption = () => {
         this.setState(() => ({
-            selectedOption : undefined
+            selectedOption: undefined
         }))
     };
 
@@ -79,16 +78,20 @@ export default class IndecisionApp extends React.Component {
                     title={this.state.title}
                     subtitle={this.state.subtitle}
                 />
-                <Action
-                    hasOption={this.state.options.length > 0}
-                    handlePick={this.handlePick}
-                />
-                <Options
-                    options={this.state.options}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                    handleSingleDeleteOption={this.handleSingleDeleteOption}
-                />
-                <AddOption handleAddOption={this.handleAddOption} />
+                <div className="container">
+                    <Action
+                        hasOption={this.state.options.length > 0}
+                        handlePick={this.handlePick}
+                    />
+                    <div className="widget">
+                        <Options
+                            options={this.state.options}
+                            handleDeleteOptions={this.handleDeleteOptions}
+                            handleSingleDeleteOption={this.handleSingleDeleteOption}
+                        />
+                        <AddOption handleAddOption={this.handleAddOption} />
+                    </div>
+                </div>
                 <OptionModel
                     selectedOption={this.state.selectedOption}
                     handleClearSelectedOption={this.handleClearSelectedOption}
