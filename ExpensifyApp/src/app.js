@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss'
+import AppRouter from './routers/AppRouter'
 
-const template = <p>Hello there (  '  v ')> It's me again!!</p>
-
-ReactDOM.render(template, document.getElementById('app'))
+ReactDOM.render(<AppRouter />, document.getElementById('app'))
